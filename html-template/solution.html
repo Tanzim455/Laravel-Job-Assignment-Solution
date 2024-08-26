@@ -1,0 +1,70 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Content Management</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <button class="px-4 py-1 bg-blue-600 add-module-button">Add Module</button>
+  <div class="modules-container">
+    </div>
+    <script>
+        let addModuleButton = document.querySelector('.add-module-button');
+  let modulesContainer = document.querySelector('.modules-container');
+  
+  addModuleButton.addEventListener('click', function() {
+    const module = document.createElement('div');
+    module.classList.add('module'); // Add base styling class
+  
+    // Create input for module title
+    const moduleTitleInput = document.createElement('input');
+    moduleTitleInput.type = 'text';
+    moduleTitleInput.placeholder = 'Enter Module Title';
+    moduleTitleInput.classList.add('module-title', 'px-6', 'py-1', 'border'); // Add relevant styles
+  
+    // Create button to add content within the module
+    const addContentButton = document.createElement('button');
+    addContentButton.textContent = 'Add Content'; // More descriptive text
+    addContentButton.classList.add('add-content-button', 'px-4', 'py-1', 'bg-blue-600'); // Add relevant styles
+  
+    // Create content container within the module (optional for organization)
+    const contentContainer = document.createElement('div');
+    contentContainer.classList.add('content-container'); // Optional style class
+  
+    // Handle "Add Content" button click
+    addContentButton.addEventListener('click', function() {
+      // Create content input within the module
+      const contentInput = document.createElement('input');
+      const contentInputTwo = document.createElement('input');
+      contentInput.type = 'text';
+      contentInput.type = 'text';
+      contentInput.placeholder = 'Enter Content';
+      contentInput.classList.add('content-input', 'px-6', 'py-1', 'border'); // Add relevant styles
+      contentInputTwo.type = 'text';
+      contentInputTwo.placeholder = 'Enter new Content';
+      contentInputTwo.classList.add('content-input', 'px-6', 'py-1', 'border'); 
+      // Add the content input to the content container (or directly to the module)
+      contentContainer.appendChild(contentInput);
+      contentContainer.appendChild(contentInputTwo);
+  
+      // **Optional:** Update content counter or visually indicate added content
+    });
+  
+    // Add elements to the module
+    module.appendChild(moduleTitleInput);
+    module.appendChild(addContentButton);
+    module.appendChild(contentContainer); // Optionally append contentContainer
+  
+    // Add the module to the container
+    modulesContainer.appendChild(module);
+  });
+      </script>
+</body>
+</html>
+   
+   
+</body>
+</html>

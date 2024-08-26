@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+    <button type="button" class="modulebutton text-white bg-blue-700 hover:bg-blue-800 
+focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 
+me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add module</button>
+    <div class="moduleinput"></div>
+    <div class="contentinput"></div>
+    <div class="contentbutton"></div>
+    <div class="content-module"></div>
+    <div class="saveappend"></div>
+
+    <script>
+        let modulebutton = document.querySelector('.modulebutton');
+        let content_input = document.querySelector('.contentbutton');
+        let content_button_clicked=false;
+        console.log(content_button_clicked);
+        
+        modulebutton.addEventListener('click', function () {
+            let moduleinput = document.querySelector('.moduleinput');
+            moduleinput.classList.add('flex', 'flex-col', 'w-1/4', 'space-y-2');
+            let save_append = document.querySelector('.saveappend');
+            let content_module = document.querySelector('.content-module');
+
+            content_module.classList.add('flex', 'flex-col', 'w-1/4', 'space-y-2');
+
+            //If you only want to submit button and one input
+            if (!document.querySelector('.save_button') && !document.querySelector('.inputclass')) {
+
+                let inputfield = document.createElement('input');
+                inputfield.classList.add('inputclass', 'px-6', 'py-1', 'border', 'rounded-md');
+                let content_button = document.createElement('button');
+                content_button.classList.add(
+                    'content-button', // Add a unique class to identify the button
+                    'text-white',
+                    'bg-blue-700',
+                    'hover:bg-blue-800',
+                    'focus:ring-4',
+                    'focus:ring-blue-300',
+                    'font-medium',
+                    'rounded-lg',
+                    'text-sm',
+                    'px-5',
+                    'py-2.5',
+                    'me-2',
+                    'mb-2',
+                    'dark:bg-blue-600',
+                    'dark:hover:bg-blue-700',
+                    'focus:outline-none',
+                    'dark:focus:ring-blue-800'
+                );
+                content_button.textContent = 'Add Content';
+
+                let save_button = document.createElement('button');
+                save_button.classList.add(
+                    'save-button', // Add a unique class to identify the button
+                    'text-white',
+                    'bg-blue-700',
+                    'hover:bg-blue-800',
+                    'focus:ring-4',
+                    'focus:ring-blue-300',
+                    'font-medium',
+                    'rounded-lg',
+                    'text-sm',
+                    'px-5',
+                    'py-2.5',
+                    'me-2',
+                    'mb-2',
+                    'dark:bg-blue-600',
+                    'dark:hover:bg-blue-700',
+                    'focus:outline-none',
+                    'dark:focus:ring-blue-800'
+                );
+                content_input.append(content_button);
+                save_button.textContent = "Save";
+
+                moduleinput.append(inputfield);
+
+                save_append.append(save_button);
+
+                content_button.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    content_button_clicked=true;
+                    console.log(content_button_clicked);
+                    
+                    content_module.innerHTML = `
+                        <input type="text" class="title px-6 py-1 border"  />
+                        <input type="text" class="px-6 py-1 border"  />
+                    `;
+                });
+
+                // Save button event listener to retrieve the title input value
+                
+
+            } else {
+                console.log("Sorry you can't add more buttons, only input fields");
+                // let inputfield = document.createElement('input');
+                // inputfield.classList.add('inputclass', 'px-6', 'py-1', 'border');
+                // moduleinput.append(inputfield);
+            }
+        });
+    </script>
+</body>
+
+</html>
