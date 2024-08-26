@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseCreateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+ Route::get('/course-module/create',[CourseCreateController::class,'create']);
+
+ Route::post('/course-module/store',[CourseCreateController::class,'store'])->name('coursemodule.store');
