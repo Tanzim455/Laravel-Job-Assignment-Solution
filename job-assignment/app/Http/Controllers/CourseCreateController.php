@@ -15,13 +15,15 @@ class CourseCreateController extends Controller
 
     public function store(CourseModuleRequest $request){
         
-         $course=CourseModel::create($request->validated());
+        foreach ($request->addMoreInputFields as  $value) {
+            CourseModel::create($value);
+        }
         
          
         return response()->json([
           'status' => 200,
-          'message' => 'Product created successfully!',
-          'product' => $course,
+          'message' => 'CourseModules added successfully!',
+          
       ]);
            
     }

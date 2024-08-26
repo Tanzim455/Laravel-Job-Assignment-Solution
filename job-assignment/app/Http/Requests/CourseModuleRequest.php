@@ -22,17 +22,25 @@ class CourseModuleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-            'title'=>'required'
+            'addMoreInputFields.*.title' => 'required'
         ];
     }
+    
+    public function messages(): array
+    {
+        return [
+            'addMoreInputFields.*.title.required' => 'The title field is required for all input fields.'
+        ];
+    }
+    
     public function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {
         $response = response()->json([
             'status' => 400,
             'errors' => $validator->messages()
         ]);
-
+    
         throw new \Illuminate\Validation\ValidationException($validator, $response);
     }
+    
 }
