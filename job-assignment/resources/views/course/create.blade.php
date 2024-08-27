@@ -62,6 +62,7 @@ me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:
                 console.log("Clicked");
 
                 let allInputClass = document.querySelectorAll('.inputclass');
+                let single_input_class=document.querySelector('.inputclass');
                 let inputData=[];
                 allInputClass.forEach(async input => {
                     console.log(input.value);
@@ -96,14 +97,30 @@ me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:
 
     for (const field in errors) {
         if (errors.hasOwnProperty(field)) {
-           console.log(field);
-           
+            
+            console.log(errors[field]);
             
             const messages = errors[field];
             messages.forEach(message => {
-                alertmessage.textContent=`${message}`;
-                alertmessage.classList.add('p-4', 'mb-4', 'text-sm', 'text-green-800', 'rounded-lg', 'bg-red-50', 'dark:bg-red-800', 'dark:text-red-400');
-                // You can display this message in the UI as needed
+                   console.log(message);
+                   
+                let error_div=document.createElement('div');
+
+                error_div.textContent="Hello";
+                error_div.classList.add('p-4', 'mb-4', 'text-sm', 'text-green-800', 'rounded-lg', 'bg-red-50', 'dark:bg-red-800', 'dark:text-red-400');
+                 // Get the parent element of the input field
+                 console.log(single_input_class);
+                 
+                // Get the parent element of the input field
+               
+
+// Insert the error message after the input field
+single_input_class.insertAdjacentElement('afterend', error_div);
+
+                
+              
+                    
+                
             });
         }
     }
