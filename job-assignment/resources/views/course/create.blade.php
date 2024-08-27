@@ -92,41 +92,62 @@ me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:
                     alertmessage.classList.add('p-4','mb-4','text-sm','text-green-800','rounded-lg','bg-green-50','dark:bg-gray-800', 'dark:text-green-400');
                     
                  }
-                 if (message.status === 400) {
-    const errors = message.errors;
+//                  if (message.status === 400) {
+//     const errors = message.errors;
 
-    for (const field in errors) {
-        if (errors.hasOwnProperty(field)) {
+//     for (const field in errors) {
+//         if (errors.hasOwnProperty(field)) {
             
-            console.log(errors[field]);
+//             console.log(errors[field]);
             
-            const messages = errors[field];
-            messages.forEach(message => {
-                   console.log(message);
+//             const messages = errors[field];
+//             messages.forEach(message => {
+//                    console.log(message);
                    
-                let error_div=document.createElement('div');
+//                 let error_div=document.createElement('div');
 
-                error_div.textContent="Hello";
-                error_div.classList.add('p-4', 'mb-4', 'text-sm', 'text-green-800', 'rounded-lg', 'bg-red-50', 'dark:bg-red-800', 'dark:text-red-400');
-                 // Get the parent element of the input field
-                 console.log(single_input_class);
+//                 error_div.textContent="Hello";
+//                 error_div.classList.add('p-4', 'mb-4', 'text-sm', 'text-green-800', 'rounded-lg', 'bg-red-50', 'dark:bg-red-800', 'dark:text-red-400');
+//                  // Get the parent element of the input field
+//                  console.log(single_input_class);
                  
-                // Get the parent element of the input field
+//                 // Get the parent element of the input field
                
 
-// Insert the error message after the input field
-single_input_class.insertAdjacentElement('afterend', error_div);
+// // Insert the error message after the input field
+// single_input_class.insertAdjacentElement('before', error_div);
 
                 
               
                     
                 
-            });
+//             });
+//         }
+//     }
+// }
+
+if (message.status === 400) {
+    const errors = message.errors;
+
+    // Remove existing error messages
+    // document.querySelectorAll('.error-message').forEach(el => el.remove());
+
+    // Get all input fields
+    let allInputFields = document.querySelectorAll('.inputclass');
+
+    allInputFields.forEach((input, index) => {
+        if (errors.hasOwnProperty(`addMoreInputFields.${index}.title`)) {
+            const errorMessages = errors[`addMoreInputFields.${index}.title`];
+            
+            let error_div = document.createElement('div');
+            error_div.textContent = errorMessages[0]; // Display the first error message
+            error_div.classList.add('error-message', 'p-4', 'mb-4', 'text-sm', 'text-red-800', 'rounded-lg', 'bg-red-50', 'dark:bg-red-800', 'dark:text-red-400');
+            
+            // Insert the error message after the input field
+            input.insertAdjacentElement('afterend', error_div);
         }
-    }
+    });
 }
-
-
 
                 
                 
