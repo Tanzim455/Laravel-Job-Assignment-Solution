@@ -6,19 +6,24 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
    
 <button type="button" class="modulebutton text-white bg-blue-700 hover:bg-blue-800 
 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 
 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add Module</button>
-<div class="moduleinput"></div>
-<div class="contentinput"></div>
-<div class="saveappend"></div>
-
-<div class="successOrFailure">
+<div class="wrapper">
+    <div class="moduleinput"></div>
+    <div class="contentinput"></div>
+    <div class="saveappend"></div>
+    
+    <div class="successOrFailure">
+    <div class="icon"></div>
+</div>
 
 <script>
+   
     let modulebutton = document.querySelector('.modulebutton');
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     let alertmessage=document.querySelector('.successOrFailure');
@@ -32,8 +37,38 @@ me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:
         inputfield.classList.add('inputclass', 'px-6', 'py-1', 'border', 'rounded-md');
         moduleinput.append(inputfield);
         
+        let div_icon=document.querySelector('.icon');
         // Check if save button already exists
-        if (!document.querySelector('.save-button')) {
+        let wrapper=document.querySelector('.wrapper');
+        console.log(wrapper);
+        if(document.querySelector(".hidden")){
+            
+
+            let allInputClass = document.querySelectorAll('.inputclass');
+            let allInputClassArray = Array.from(allInputClass);
+allInputClassArray.forEach((value, index) => {
+  if(index >=1){
+    value.remove()
+    
+  }
+});
+
+let sliced_array = Array.prototype.slice.call(allInputClass, 1, allInputClass.length - 1);
+
+// Remove all elements in the sliced array using forEach
+sliced_array.forEach(element => element.remove());
+
+                 wrapper.classList.remove("hidden");
+                 wrapper.classList.add("block");
+
+           
+            
+
+            
+        }
+        if (!document.querySelector('.save-button') ) {
+            
+            
             let save_button = document.createElement('button');
             save_button.classList.add(
                 'save-button', // Add a unique class to identify the button
@@ -56,7 +91,9 @@ me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:
             );
             save_button.textContent = "Save";
             save_append.append(save_button);
-
+            let icon=document.createElement('i');
+            icon.classList.add('fa-solid','fa-xmark');
+           div_icon.append(icon);
             save_button.addEventListener('click', async function(e) {
                 e.preventDefault();
                 console.log("Clicked");
@@ -118,6 +155,19 @@ if (message.status === 400) {
 
                 
                 
+            });
+            
+            icon.addEventListener('click',function(e){
+             e.stopPropagation();
+             
+
+             wrapper.classList.add("hidden");
+             
+             
+             
+             
+             
+             
             });
         }
     });
