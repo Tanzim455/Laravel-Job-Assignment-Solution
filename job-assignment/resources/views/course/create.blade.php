@@ -92,39 +92,6 @@ me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:
                     alertmessage.classList.add('p-4','mb-4','text-sm','text-green-800','rounded-lg','bg-green-50','dark:bg-gray-800', 'dark:text-green-400');
                     
                  }
-//                  if (message.status === 400) {
-//     const errors = message.errors;
-
-//     for (const field in errors) {
-//         if (errors.hasOwnProperty(field)) {
-            
-//             console.log(errors[field]);
-            
-//             const messages = errors[field];
-//             messages.forEach(message => {
-//                    console.log(message);
-                   
-//                 let error_div=document.createElement('div');
-
-//                 error_div.textContent="Hello";
-//                 error_div.classList.add('p-4', 'mb-4', 'text-sm', 'text-green-800', 'rounded-lg', 'bg-red-50', 'dark:bg-red-800', 'dark:text-red-400');
-//                  // Get the parent element of the input field
-//                  console.log(single_input_class);
-                 
-//                 // Get the parent element of the input field
-               
-
-// // Insert the error message after the input field
-// single_input_class.insertAdjacentElement('before', error_div);
-
-                
-              
-                    
-                
-//             });
-//         }
-//     }
-// }
 
 if (message.status === 400) {
     const errors = message.errors;
