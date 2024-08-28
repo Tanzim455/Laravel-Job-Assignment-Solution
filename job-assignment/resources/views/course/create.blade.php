@@ -46,17 +46,9 @@ me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:
 
             let allInputClass = document.querySelectorAll('.inputclass');
             let allInputClassArray = Array.from(allInputClass);
-allInputClassArray.forEach((value, index) => {
-  if(index >=1){
-    value.remove()
-    
-  }
-});
 
-let sliced_array = Array.prototype.slice.call(allInputClass, 1, allInputClass.length - 1);
 
-// Remove all elements in the sliced array using forEach
-sliced_array.forEach(element => element.remove());
+
 
                  wrapper.classList.remove("hidden");
                  wrapper.classList.add("block");
@@ -161,7 +153,7 @@ if (message.status === 400) {
              e.stopPropagation();
              
 
-             wrapper.classList.add("hidden");
+             
              
              
              
