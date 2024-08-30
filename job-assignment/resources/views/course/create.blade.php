@@ -153,7 +153,7 @@ if (message.status === 400) {
              e.stopPropagation();
              
 
-             
+             wrapper.classList.add("hidden");
              
              
              
