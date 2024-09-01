@@ -5,43 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
    
 <button type="button" class="modulebutton text-white bg-blue-700 hover:bg-blue-800 
 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 
 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add Module</button>
-<div class="moduleinput">
+<div class="wrapper">
+    <div class="moduleinput">
 
+    </div>
+    <div class="contentinput">
+        
+    </div>
+    <div class="contentbutton">
+        
+    </div>
+    <div class="content-div">
+        <div class="content-module"></div>
+        <div class="saveappend"></div>
+        <div class="icon"></div
+    </div>
+    >
 </div>
-<div class="contentinput">
-    
-</div>
-<div class="contentbutton">
-    
-</div>
-<div class="content-module"></div>
-<div class="saveappend"></div>
 
 <script>
+    let content_div=document.querySelector('.content-div');
    let modulebutton = document.querySelector('.modulebutton');
 let class_input = document.querySelector('.classinput');
+let content_div_array=content_div.classList;
+let all_class=Array.from(content_div_array);
+
+console.log(all_class);
+
+
 
 let content_input=document.querySelector('.contentbutton');
-
+let icon=document.querySelector('.icon');
 modulebutton.addEventListener('click', function() {
     let moduleinput = document.querySelector('.moduleinput');
     moduleinput.classList.add('flex','flex-col','w-1/4','space-y-2')
     let save_append=document.querySelector('.saveappend');
      let content_module=document.querySelector('.content-module');
     
-     content_module.classList.add('flex','flex-col','w-1/4','space-y-2')
+     content_module.classList.add('flex','flex-col','w-1/4','space-y-2');
+     let wrapper=document.querySelector('.wrapper');
+     if(document.querySelector(".hidden")){
+       wrapper.classList.remove("hidden");
+       wrapper.classList.add("block");
+       
+       }
+       if(all_class.includes("hidden")){
+    console.log("It is hidden");
     
-            
+}else{
+    console.log("it is not");
+    
+} 
            //If you only want to submit button and  one input
         
        if(!document.querySelector('.save_button') && !document.querySelector('.inputclass')){
-        
         
          let inputfield = document.createElement('input');
         inputfield.classList.add('inputclass', 'px-6', 'py-1', 'border','rounded-md');
@@ -92,29 +116,96 @@ modulebutton.addEventListener('click', function() {
         save_button.textContent = "Save";
         moduleinput.append(inputfield);
         save_append.append(save_button);
-        
+        let div_icon=document.querySelector('.icon');
+    let icon=document.createElement('i');
+            icon.classList.add('fa-solid','fa-xmark');
+           div_icon.append(icon);
         content_button.addEventListener('click',function(e){
             e.stopPropagation();
             let module_create_input=document.createElement('input');
             
-    module_create_input.classList.add('module-content-input','px-6', 'py-1', 'border','rounded-md');
-
-    
-     content_module.append(module_create_input);
+            module_create_input.classList.add('module-content-input','px-6', 'py-1', 'border','rounded-md');
+        
+            
+             content_module.append(module_create_input);
+            console.log(content_div);
+          let content_div_classes=Array.from(content_div.classList);
+            console.log(content_div_classes);
+          
+          
+          
+          if(content_div_classes.includes("hidden"))
+        {
+            content_div.classList.remove("hidden");
+            
+        }else{
+            console.log("Not hidden");
+            
+        }
+          
+           
      
             
         })
+       
+            
+        icon.addEventListener('click',function(e){
+             e.stopPropagation();
+           
+
+             wrapper.classList.add("hidden");
+             content_div.classList.add("hidden");
+              let inputclass=document.querySelectorAll('.module-content-input');
+        //   console.log(inputclass);
+          
+          let array_content_classes=Array.from(inputclass);
+           console.log(array_content_classes);
+           
+        
+              
+              array_content_classes.forEach((value)=>{
+              
+             value.remove();
+               
+               
+                 
+                 
+              })
+             
+             
+             
+            
+             
+             
+             
+            });
+
+       }else{
+                  
         
 
-       }
-       else{
-        console.log("Sorry you cant add more buttons only input field");
-        let inputfield = document.createElement('input');
-        inputfield.classList.add('inputclass', 'px-6', 'py-1', 'border');
-        moduleinput.append(inputfield);
+        console.log(all_class.includes("hidden"));
+        
+
+    
 
         
+        
+        if(all_class.includes("hidden")){
+              content_div.classList.remove("hidden");
+              console.log(content_div);
+              
+        }
+        
+        
+            
+            
+        //  })
+        
+              
+                  
        }
+       
             // Check if the button already exists
           
        //If you want to submit more than one input but isngle button

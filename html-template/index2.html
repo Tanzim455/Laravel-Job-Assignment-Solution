@@ -5,35 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
    
 <button type="button" class="modulebutton text-white bg-blue-700 hover:bg-blue-800 
 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 
 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add Module</button>
-<div class="moduleinput">
+<div class="wrapper">
+    <div class="moduleinput">
 
+    </div>
+    <div class="contentinput">
+        
+    </div>
+    <div class="saveappend"></div>
+    <div class="icon"></div>
 </div>
-<div class="contentinput">
-    
-</div>
-<div class="saveappend"></div>
 
 <script>
    let modulebutton = document.querySelector('.modulebutton');
 let class_input = document.querySelector('.classinput');
-
+let icon=document.querySelector('.icon');
+let wrapper=document.querySelector('.wrapper');
 modulebutton.addEventListener('click', function() {
     let moduleinput = document.querySelector('.moduleinput');
     moduleinput.classList.add('flex','flex-col','w-1/4','space-y-2')
     let save_append=document.querySelector('.saveappend');
-     
+    let div_icon=document.querySelector('.icon');
+    let icon=document.createElement('i');
+            icon.classList.add('fa-solid','fa-xmark');
+           div_icon.append(icon);
          
       
             
            //If you only want to submit button and  one input
         
        if(!document.querySelector('.save_button') && !document.querySelector('.inputclass')){
+        
+        
         
         
          let inputfield = document.createElement('input');
@@ -63,14 +73,15 @@ modulebutton.addEventListener('click', function() {
         moduleinput.append(inputfield);
         save_append.append(save_button);
         
+        icon.addEventListener('click',function(e){
+           e.stopPropagation();
+           wrapper.classList.add("hidden");
 
-       }
-       else{
-        console.log("Sorry you cant add more buttons only input field");
-        let inputfield = document.createElement('input');
-        inputfield.classList.add('inputclass', 'px-6', 'py-1', 'border');
-        moduleinput.append(inputfield);
-
+        });
+       }else{
+        icon.remove();
+        wrapper.classList.remove("hidden");
+        wrapper.classList.add("block");
         
        }
             // Check if the button already exists
