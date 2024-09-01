@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -13,26 +14,69 @@
     <button type="button" class="modulebutton text-white bg-blue-700 hover:bg-blue-800 
 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 
 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add module</button>
+<div class="parent-wrapper"></div>
+<div class="wrapper">
     <div class="moduleinput"></div>
     <div class="contentinput"></div>
-    <div class="contentbutton"></div>
-    <div class="content-module"></div>
-    <div class="saveappend"></div>
-
+    
+        <div class="contentbutton"></div>
+        <div class="content-module-wrapper">
+            
+        </div>
+        <div class="content-module"></div>
+        <div class="saveappend"></div>
+    
+    
+    <div class="icon"></div>
+</div>
     <script>
         let modulebutton = document.querySelector('.modulebutton');
         let content_input = document.querySelector('.contentbutton');
-        let content_button_clicked=false;
-        console.log(content_button_clicked);
+        // let content_button_clicked=false;
+        let wrapper=document.querySelector('.wrapper');
         
-        modulebutton.addEventListener('click', function () {
-            let moduleinput = document.querySelector('.moduleinput');
+        
+        let div_icon=document.querySelector(".icon");
+        modulebutton.addEventListener('click', function (e) {
+          e.stopPropagation();
+          let moduleinput = document.querySelector('.moduleinput');
             moduleinput.classList.add('flex', 'flex-col', 'w-1/4', 'space-y-2');
             let save_append = document.querySelector('.saveappend');
             let content_module = document.querySelector('.content-module');
-
+            let icon=document.createElement("i");
+            icon.classList.add('new-icon','fa-solid','fa-xmark');
+            div_icon.append(icon);
             content_module.classList.add('flex', 'flex-col', 'w-1/4', 'space-y-2');
+           
+           console.log(wrapper.classList);
+           //Convert it to array
+           let wrapper_classes=Array.from(wrapper.classList);
+             
+             
+           if(wrapper_classes.includes("hidden")){
+            wrapper.classList.remove("hidden");
+            icon.remove();
+            
+            // content_module.firstChild.nextSibling.remove();
+            if(content_module.hasChildNodes()){
+                console.log(content_module.children);
+                let content_module_array=Array.from(content_module.children);
 
+                content_module_array.forEach((value)=>{
+                    value.remove();
+                    
+                    
+                    
+                })
+                
+                
+            }
+            
+           }
+           
+           
+            
+            
             //If you only want to submit button and one input
             if (!document.querySelector('.save_button') && !document.querySelector('.inputclass')) {
 
@@ -89,8 +133,8 @@ me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:
 
                 content_button.addEventListener('click', function (e) {
                     e.stopPropagation();
-                    content_button_clicked=true;
-                    console.log(content_button_clicked);
+                    // content_button_clicked=true;
+                
                     
                     content_module.innerHTML = `
                         <input type="text" class="title px-6 py-1 border"  />
@@ -100,12 +144,29 @@ me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:
 
                 // Save button event listener to retrieve the title input value
                 
-
+                  icon.addEventListener('click',function(e){
+                    e.stopPropagation();
+                    console.log(wrapper);
+                    wrapper.classList.add("hidden");
+                    icon.remove();
+                  })
             } else {
-                console.log("Sorry you can't add more buttons, only input fields");
-                // let inputfield = document.createElement('input');
-                // inputfield.classList.add('inputclass', 'px-6', 'py-1', 'border');
-                // moduleinput.append(inputfield);
+                let icon=document.createElement("i");
+            icon.classList.add('new-icon','fa-solid','fa-xmark');
+            div_icon.append(icon);
+              
+                
+                icon.addEventListener('click',function(e){
+                    e.stopPropagation();
+                    console.log("Clicked");
+                    wrapper.classList.add("hidden");
+                    icon.remove();
+                    // console.log(wrapper);
+                    // wrapper.classList.add("hidden");
+                    // icon.remove();
+                  });
+                
+                // wrapper.classList.remove("hidden");
             }
         });
     </script>
