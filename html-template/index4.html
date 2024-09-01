@@ -45,7 +45,15 @@ me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:
             let content_module = document.querySelector('.content-module');
             let icon=document.createElement("i");
             icon.classList.add('new-icon','fa-solid','fa-xmark');
-            div_icon.append(icon);
+            let all_icon_class=document.querySelectorAll('.new-icon');
+            //convert it to array
+            if(all_icon_class.length<1){
+                div_icon.append(icon);
+            }
+           
+           
+            
+            
             content_module.classList.add('flex', 'flex-col', 'w-1/4', 'space-y-2');
            
            console.log(wrapper.classList);
